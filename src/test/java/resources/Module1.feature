@@ -1,18 +1,23 @@
-Feature: Form Authentication
-
-Scenario: Login Functionality Exists
-
-Given I have open the browser
-And I open Available examples website	
-When I click on Form Authentication
-Then Login page should display
+Feature: Testing login with correct and incorrect credentials
 
 
-Scenario Outline: Login Functionality works
-Given I have open the LoginPage
-When I enter username <username1> and password <password1>
-Then I am able to access the secure area
+
+Background:
+  		Given I have the LoginPage
+
+Scenario Outline: Successful Login when correct credentials are passed 
+		When I enter correct username <username1> and correct password <password1>
+		Then I will be  successfully logged in
 
 Examples:
 |username1	| 	password1|
 |tomsmith	|	SuperSecretPassword!|
+
+Scenario Outline: Error message displayed when incorrect credentials are passed	
+		When I enter incorrect username <username1> and incorrect password <password1>
+		Then I will see an error message 
+
+Examples:
+|username1	| 	password1|
+|tomsmith12	|	SuperPassword!|
+|dkjhvjkhfhf|		kswl;kwk  |

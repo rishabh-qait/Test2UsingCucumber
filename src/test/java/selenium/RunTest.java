@@ -9,12 +9,13 @@ import stepdefs.LoginPage;
 
 
 @CucumberOptions(
-        features = "src/test/java/resources/Module1.feature",
+        features = "src/test/java/resources/",
         glue = "stepdefs",
         plugin = { 
                     "pretty",
                     "html:target/cucumber",
                 } 
+        
 
         )
 public class RunTest extends AbstractTestNGCucumberTests {
