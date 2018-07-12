@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageObjects {
+public class LoginPageLocator {
 	
 
 	public WebElement get_Login_Button(WebDriver driver) 

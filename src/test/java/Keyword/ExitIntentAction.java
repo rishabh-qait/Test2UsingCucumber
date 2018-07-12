@@ -2,31 +2,33 @@ package Keyword;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.event.InputEvent;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 
-import junit.framework.Assert;
+
+import locators.ExitIntentLocator;
 
 public class ExitIntentAction {
 	
 	
 	
 	WebDriver driver;
+	ExitIntentLocator exitintentlocatorobj;
 
 	public ExitIntentAction(WebDriver driver) {
 		this.driver = driver;
 
 	}
-public void verifying_Exit_Intent_Page_Displayed() {
+	public void click_Exit_Intent_Link() 
+	{
+	exitintentlocatorobj.get_Exit_Intent_link(driver).click();	
 		
-		Assert.assertEquals("http://10.0.31.161:9292/exit_intent",driver.getCurrentUrl());
-			
-	} 
+	}
+
 	
 	
-	public void move_mouse() throws AWTException, InterruptedException 
+	public void move_Mouse_Out_Of_Window() throws AWTException, InterruptedException 
 	{
 		
 		Robot rob = new Robot();
@@ -37,13 +39,12 @@ public void verifying_Exit_Intent_Page_Displayed() {
        
 	
 	}
-	public void veriying_Modal_Window_Displayed() 
+	public String getting_Modal_Window_Text() 
 	{
 		
-		boolean check=driver.findElement(By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]")).isDisplayed();
-		Assert.assertTrue(check);
-		String text = driver.findElement(By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]/div[1]")).getText();
-				Assert.assertEquals("THIS IS A MODAL WINDOW", text);
+		
+		return exitintentlocatorobj.get_Modal_Window_Header(driver).getText();
+				
 		
 	}
 	public void move_mouse_away() throws AWTException, InterruptedException 
@@ -57,13 +58,17 @@ public void verifying_Exit_Intent_Page_Displayed() {
        
 	
 	}
-	public void verifying_Modal_Window_Disappears() throws AWTException, InterruptedException  
+	public boolean verifying_Modal_Window_Disappears() throws AWTException, InterruptedException  
 	{
 		
-		boolean check = true;
 		Thread.sleep(2000);
-		 check=driver.findElement(By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]")).isDisplayed();
-		Assert.assertFalse(check);	
+		 return exitintentlocatorobj.get_Modal_Window(driver).isDisplayed();	
+	}	
+	public boolean verifying_Modal_Window_Appears() throws AWTException, InterruptedException  
+	{
+		
+		Thread.sleep(2000);
+		 return exitintentlocatorobj.get_Modal_Window(driver).isDisplayed();	
 	}	
 
 

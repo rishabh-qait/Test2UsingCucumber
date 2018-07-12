@@ -13,6 +13,17 @@ public class ExitIntentLocator {
 		return driver.findElement(By.linkText("Exit Intent"));
 		
 	}
+	public  WebElement get_Modal_Window(WebDriver driver) 
+	{
+		return driver.findElement(By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]"));
+		
+	}
+	public  WebElement get_Modal_Window_Header(WebDriver driver) 
+	{
+		return driver.findElement(By.xpath("//*[@id=\"ouibounce-modal\"]/div[2]"));
+		
+	}
+	
 	
 	
 
