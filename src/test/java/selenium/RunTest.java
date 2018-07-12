@@ -14,6 +14,7 @@ import stepdefs.LoginPage;
         plugin = { 
                     "pretty",
                     "html:target/cucumber",
+                    
                 } 
         
 
