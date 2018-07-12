@@ -21,51 +21,42 @@ public class LoginPage {
 	ActionClass1 actionclass1obj;
 	PageObjects pageobj;
 
-	@Before
 	public void launch_Browser() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\rishabh.jain\\eclipse-workspace\\chromedriver.exe");
 		driver = new ChromeDriver();
+		System.out.println("Browser has been launched ");
 
 	}
 
-	// @Before("@First,@Second")
-	// public void before_second_scenario()
-	// {
-	// System.out.println("This will execute before the execution of the scenario
-	// tagged with @First and @Second both");
-	//
-	// }
-	// public void running_in_background()
-	// {
-	//
-	// }
-	@Given("^I have open the browser$")
-	public void openBrowser() {
-
-	}
-
-	@And("^I navigate to Available examples website$")
-	public void navigate_To_Examples_Website() {
-		driver.get("http://10.0.31.161:9292/");
-
-	}
-
-	@When("I navigate to Form Authentication")
-	public void clicking_Form_Authentication_Link() {
-
-		driver.findElement(By.linkText("Form Authentication")).click();
-
-	}
-
-	@Then("Login page will display")
-	public void check_Login_Page() {
-
-		Assert.assertEquals("http://10.0.31.161:9292/login", driver.getCurrentUrl());
-		driver.close();
-	}
+//	@Given("^I have open the browser$")
+//	public void openBrowser() {
+//		launch_Browser();
+//pageobj= new PageObjects();
+//	}
+//
+//	@Given("^I navigate to Available examples website$")
+//	public void navigate_To_Examples_Website() {
+//		driver.get("http://10.0.31.161:9292/");
+//
+//	}
+//
+//	@When("I navigate to Form Authentication")
+//	public void clicking_Form_Authentication_Link() {
+//
+//		pageobj.get_Form_Authentication_Link(driver).click();
+//
+//	}
+//
+//	@Then("Login page will display")
+//	public void check_Login_Page() {
+//
+//		Assert.assertEquals("http://10.0.31.161:9292/login", driver.getCurrentUrl());
+//		driver.close();
+//	}
 
 	@Given("^I have the LoginPage$")
 	public void openBrowser1() {
+		launch_Browser();
 		actionclass1obj = new ActionClass1(driver);
 		pageobj = new PageObjects();
 		driver.get("http://10.0.31.161:9292/login");
@@ -99,7 +90,7 @@ public class LoginPage {
 	@Then("^I will see an error message$")
 	public void i_am_able_to_see_error_msg() throws Throwable {
 		boolean check = false;
-		check = driver.findElement(By.xpath("//*[@id=\"flash\"]")).isDisplayed();
+		check = pageobj.get_Error_Msg_Field(driver).isDisplayed();
 		Assert.assertTrue(check);
 		driver.close();
 
@@ -107,6 +98,7 @@ public class LoginPage {
 
 	@Given("^I have successfully logged in$")
 	public void navigate_to_secure_area() {
+		launch_Browser();
 		driver.get("http://10.0.31.161:9292/login");
 		actionclass1obj = new ActionClass1(driver);
 		pageobj = new PageObjects();
@@ -114,17 +106,17 @@ public class LoginPage {
 		pageobj.get_Login_Button(driver).click();
 	}
 
-	@And("^Logout button is displayed$")
+	@Given("^Logout button is displayed$")
 	public void logout_button_is_displayed() {
 		boolean check = false;
-		check = driver.findElement(By.xpath("//*[@id=\"content\"]/div/a")).isDisplayed();
+		check =pageobj.get_Logout_Button(driver).isDisplayed();
 		Assert.assertTrue(check);
 
 	}
 
 	@When("^I Logout$")
 	public void click_on_Logout() {
-		driver.findElement(By.xpath("//*[@id=\"content\"]/div/a")).click();
+		pageobj.get_Logout_Button(driver).click();
 	}
 
 	@Then("^I will navigate back to Login page$")
